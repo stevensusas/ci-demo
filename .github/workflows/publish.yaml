@@ -9,9 +9,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16 # Adjust based on your project's Node.js version
       - name: Install dependencies
         run: npm install
       - name: Run linting
         run: npm run lint
 
+  publish:
+    name: Publish Package
+    needs: lint # Ensure lint job completes successfully
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16 # Adjust based on your project's Node.js version
+          registry-url: https://npm.pkg.github.com # Set the GitHub NPM registry
+      - name: Publish to GitHub NPM Registry
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          registry: https://npm.pkg.github.com
+          token: ${{ secrets.GITHUB_TOKEN }}
