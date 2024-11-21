@@ -1,5 +1,5 @@
 {
-  "name": "@cis1912/ci-demo",
+  "name": "@stevensusas/ci-demo",
   "version": "1.0.0",
   "description": "A demo application used to demonstrate CI for cis1912",
   "main": "index.js",
